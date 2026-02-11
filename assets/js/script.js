@@ -42,3 +42,49 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const modal = document.getElementById("projectModal");
+if (modal) {
+  const titleEl = modal.querySelector(".project-modal-title");
+  const textEl  = modal.querySelector(".project-modal-text");
+  const closeBtn = modal.querySelector(".project-modal-close");
+  const backdrop = modal.querySelector(".project-modal-backdrop");
+
+  const openButtons = document.querySelectorAll(".project-open");
+
+  const openModal = (btn) => {
+    titleEl.textContent = btn.dataset.modalTitle || "";
+    textEl.textContent  = btn.dataset.modalText || "";
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+  };
+
+  openButtons.forEach(btn => btn.addEventListener("click", () => openModal(btn)));
+  closeBtn?.addEventListener("click", closeModal);
+  backdrop?.addEventListener("click", closeModal);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+}
+
+
+
+
+
